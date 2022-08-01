@@ -1,0 +1,141 @@
+<!--
+  CREDITS
+  ------------------------
+  Author: Daniel David
+  Date: 31/07/2022
+  Version: 1.0
+  ------------------------
+  REFERENCES
+  ------------------------
+  https://ionicframework.com/docs/components/tabs/
+  ------------------------
+  DESCRIPTION
+  ------------------------
+  This is a basic calculator working with ionic grids
+  ------------------------
+  USAGE
+  ------------------------
+  ionic cordova build android
+  ionic cordova run android
+  ------------------------
+  NOTES
+  ------------------------
+  Feel free to modify as you need this code, if you can give the author credit, please do so.
+  ------------------------
+-->
+
+
+<ion-header>
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-align-items-center ">
+  <!-- Area where stay the buttons -->
+  <ion-grid class="center2">
+    <ion-row>
+      <ion-col>
+        <ion-grid class="center">
+          <ion-row>
+            <ion-col>
+              <ion-card class="card">
+                <ion-card-header>
+                  <ion-card-title>
+                    <span class="res">Resultado</span>
+                  </ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <p>
+                    <ion-text color="primary">
+                      <h1>{{ope}}</h1>
+                      <span>{{result}}</span>
+                    </ion-text>
+                  </p>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button class="normalButtonAC" expand="block" (click)="limpar()">AC</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" expand="block" (click)="operacao('%')">%</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" color="warning"  expand="block" (click)="backspace()"><</ion-button>
+            </ion-col>
+          </ion-row>
+      
+          <ion-row class="ion-align-items-center"> 
+            <ion-col>
+              <ion-button  class="normalButton" expand="block" (click)="addNumero('7')">7</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" expand="block" (click)="addNumero('8')">8</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" expand="block" (click)="addNumero('9')">9</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" color="warning" expand="block" (click)="operacao('*')">x</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-align-items-center">
+            <ion-col>
+              <ion-button class="normalButton" expand="block" (click)="addNumero('4')">4</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" expand="block" (click)="addNumero('5')">5</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" expand="block" (click)="addNumero('6')">6</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" color="warning" expand="block" (click)="operacao('-')">-</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-align-items-center">
+            <ion-col>
+              <ion-button class="normalButton" expand="block" (click)="addNumero('1')">1</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" expand="block" (click)="addNumero('2')">2</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" expand="block" (click)="addNumero('3')">3</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" color="warning" expand="block" (click)="operacao('+')">+</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-align-items-center">
+            <ion-col>
+              <ion-button class="normalButton" expand="block" (click)="addNumero('0')">0</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" expand="block" (click)="addNumero('.')">,</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" expand="block" (click)="showResult()">=</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button class="normalButton" color="warning" expand="block" (click)="operacao('/')">÷</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+      
+              <!-- Credits for author and version of app -->
+              <div class="footer">
+              <p>COPYRIGHT © 2022 - {{author}} VERSION {{version}}</p>
+                
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
