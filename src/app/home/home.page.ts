@@ -32,6 +32,7 @@ import { ToastController } from '@ionic/angular';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage {
   // credits and about
   author: string = "Daniel David";
@@ -88,11 +89,16 @@ export class HomePage {
       }
       
     } else {
-      this.operator = tipo;
       // verify if the this.ope contains a number or not, if not dont add the operator
-      if(this.ope.length > 0){
+      if(this.ope.length > 0 && this.operator.length == 0){
+        this.ope += tipo;
+      } else if (this.ope.length > 0 && this.operator != tipo){
+        let index = this.ope.lastIndexOf(this.operator)
+        this.ope = this.ope.substring(0, index)
         this.ope += tipo;
       }
+      this.operator = tipo;
+      
     }
     
     
@@ -122,6 +128,9 @@ export class HomePage {
             this.toast("Não é possível dividir por zero!");
             result = 0;
             this.ope = "";
+            this.num1 = "";
+            this.num2 = "";
+            this.result = "";
             return;
           }
           result = num1 / num2;
@@ -158,6 +167,9 @@ export class HomePage {
             this.toast("Não é possível dividir por zero!");
             result = 0;
             this.ope = "";
+            this.num1 = "";
+            this.num2 = "";
+            this.result = "";
             return;
           }
           result = num1 / num2;
@@ -192,9 +204,12 @@ export class HomePage {
   }
 
   public limpar(){
-    this.ope = "";
     this.result = "";
+    this.operator = "";
+    this.novo_operador = "";
+    this.ope = "";
     this.operadores = [];
+    this.existe_precedencia = false;
     this.num1 = "";
     this.num2 = "";
   }
