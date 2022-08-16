@@ -24,7 +24,6 @@
   ------------------------
 -->
 
-
 <ion-header>
   <ion-navbar>
     <ion-title></ion-title>
@@ -61,10 +60,10 @@
               <ion-button class="normalButtonAC" expand="block" (click)="limpar()">AC</ion-button>
             </ion-col>
             <ion-col>
-              <ion-button class="normalButton" expand="block" (click)="operacao('%')">%</ion-button>
+              <ion-button class="normalButtonAC" expand="block" (click)="operacao('%')">%</ion-button>
             </ion-col>
             <ion-col>
-              <ion-button class="normalButton" color="warning"  expand="block" (click)="backspace()"><</ion-button>
+              <ion-button class="SpecialButton" color="warning"  expand="block" (click)="backspace()"><</ion-button>
             </ion-col>
           </ion-row>
       
@@ -79,7 +78,7 @@
               <ion-button class="normalButton" expand="block" (click)="addNumero('9')">9</ion-button>
             </ion-col>
             <ion-col>
-              <ion-button class="normalButton" color="warning" expand="block" (click)="operacao('*')">x</ion-button>
+              <ion-button class="SpecialButton" color="warning" expand="block" (click)="operacao('*')">x</ion-button>
             </ion-col>
           </ion-row>
           <ion-row class="ion-align-items-center">
@@ -93,7 +92,7 @@
               <ion-button class="normalButton" expand="block" (click)="addNumero('6')">6</ion-button>
             </ion-col>
             <ion-col>
-              <ion-button class="normalButton" color="warning" expand="block" (click)="operacao('-')">-</ion-button>
+              <ion-button class="SpecialButton" color="warning" expand="block" (click)="operacao('-')">-</ion-button>
             </ion-col>
           </ion-row>
           <ion-row class="ion-align-items-center">
@@ -107,7 +106,7 @@
               <ion-button class="normalButton" expand="block" (click)="addNumero('3')">3</ion-button>
             </ion-col>
             <ion-col>
-              <ion-button class="normalButton" color="warning" expand="block" (click)="operacao('+')">+</ion-button>
+              <ion-button class="SpecialButton" color="warning" expand="block" (click)="operacao('+')">+</ion-button>
             </ion-col>
           </ion-row>
           <ion-row class="ion-align-items-center">
@@ -118,20 +117,10 @@
               <ion-button class="normalButton" expand="block" (click)="addNumero('.')">,</ion-button>
             </ion-col>
             <ion-col>
-              <ion-button class="normalButton" expand="block" (click)="showResult()">=</ion-button>
+              <ion-button class="normalButtonAC" expand="block" (click)="showResult()">=</ion-button>
             </ion-col>
             <ion-col>
-              <ion-button class="normalButton" color="warning" expand="block" (click)="operacao('/')">÷</ion-button>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-      
-              <!-- Credits for author and version of app -->
-              <div class="footer">
-              <p>COPYRIGHT © 2022 - {{author}} VERSION {{version}}</p>
-                
-              </div>
+              <ion-button class="SpecialButton" color="warning" expand="block" (click)="operacao('/')">÷</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
