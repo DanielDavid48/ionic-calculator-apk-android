@@ -43,8 +43,6 @@ export class HomePage {
   operator: string = "";
   novo_operador: string = "";
   ope: string = "";
-  operadores: string[] = [];
-  existe_precedencia: boolean = false;
   num1: string = "";
   num2: string = "";
 
@@ -54,7 +52,7 @@ export class HomePage {
   async  toast(msg: string){
       const toast = await this.toastController.create({
         message: msg,
-        duration: 2000
+        duration: 3000
       });
       toast.present();
     
@@ -77,113 +75,67 @@ export class HomePage {
     }
     this.ope += numero;
   }
-
+  
   public operacao(tipo: string){
     if(this.num2.length > 0){
+      this.novo_operador = tipo;
       if(tipo == '%'){
-        this.novo_operador = tipo;
         this.calcular("percentagem");
       } else {
-        this.novo_operador = tipo;
         this.calcular();
       }
-      
     } else {
       // verify if the this.ope contains a number or not, if not dont add the operator
       if(this.ope.length > 0 && this.operator.length == 0){
         this.ope += tipo;
       } else if (this.ope.length > 0 && this.operator != tipo){
-        let index = this.ope.lastIndexOf(this.operator)
-        this.ope = this.ope.substring(0, index)
+        this.ope = this.ope.substring(0, this.ope.lastIndexOf(this.operator))
         this.ope += tipo;
       }
-      this.operator = tipo;
-      
+      this.operator = tipo; 
     }
-    
-    
   }
 
   public calcular(tipo: string = ""){
-    if(tipo == "percentagem"){
-      let num1 = parseFloat(this.num1);
-      let num2 = (parseFloat(this.num1) * parseFloat(this.num2) / 100);
-      let result = 0;
-      let operador = this.operator;
-      this.operator = this.novo_operador;
-      this.ope += this.operator;
-      this.novo_operador = "";
-      switch(operador){
-        case "+":
-          result = num1 + num2;
-          break;
-        case "-":
-          result = num1 - num2;
-          break;
-        case "*":
-          result = num1 * num2;
-          break;
-        case "/":
-          if(num1 == 0 || num2 == 0){
-            this.toast("Não é possível dividir por zero!");
-            result = 0;
-            this.ope = "";
-            this.num1 = "";
-            this.num2 = "";
-            this.result = "";
-            return;
-          }
-          result = num1 / num2;
-          break;
-        case "%":
-          result = num1 % num2;
-          break;
-          
-      }
-      this.result = result.toString();
-      this.num1 = result.toString();
-      this.num2 = "";
-      return result;
-    } else {
-      let num1 = parseFloat(this.num1);
-      let num2 = parseFloat(this.num2);
-      let result = 0;
-      let operador = this.operator;
-      this.operator = this.novo_operador;
-      this.ope += this.operator;
-      this.novo_operador = "";
-      switch(operador){
-        case "+":
-          result = num1 + num2;
-          break;
-        case "-":
-          result = num1 - num2;
-          break;
-        case "*":
-          result = num1 * num2;
-          break;
-        case "/":
-          if(num1 == 0 || num2 == 0){
-            this.toast("Não é possível dividir por zero!");
-            result = 0;
-            this.ope = "";
-            this.num1 = "";
-            this.num2 = "";
-            this.result = "";
-            return;
-          }
-          result = num1 / num2;
-          break;
-        case "%":
-          result = num1 % num2;
-          break;
-          
-      }
-      this.result = result.toString();
-      this.num1 = result.toString();
-      this.num2 = "";
-      return result;
+    let num1 = parseFloat(this.num1);
+    let num2 = 0;
+    if(tipo == "percentagem"){num2 = (parseFloat(this.num1) * parseFloat(this.num2) / 100)} else {num2 = parseFloat(this.num2)}
+    let result = 0;
+    let operador = this.operator;
+    this.operator = this.novo_operador;
+    this.ope += this.operator;
+    this.novo_operador = "";
+  
+    switch(operador){
+      case "+":
+        result = num1 + num2;
+        break;
+      case "-":
+        result = num1 - num2;
+        break;
+      case "*":
+        result = num1 * num2;
+        break;
+      case "/":
+        if(num1 == 0 || num2 == 0){
+          this.toast("Não é possível dividir por zero!");
+          result = 0;
+          this.ope = "";
+          this.num1 = "";
+          this.num2 = "";
+          this.result = "";
+          return;
+        }
+        result = num1 / num2;
+        break;
+      case "%":
+        result = num1 % num2;
+        break;  
     }
+    this.result = result.toString();
+    this.num1 = result.toString();
+    this.num2 = "";
+    return result;
   }
     
   public showResult(){
@@ -200,7 +152,6 @@ export class HomePage {
       }
       this.result = ""
     }
-   
   }
 
   public limpar(){
@@ -208,11 +159,7 @@ export class HomePage {
     this.operator = "";
     this.novo_operador = "";
     this.ope = "";
-    this.operadores = [];
-    this.existe_precedencia = false;
     this.num1 = "";
     this.num2 = "";
   }
-
-
 }
