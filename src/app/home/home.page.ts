@@ -36,7 +36,7 @@ import { ToastController } from '@ionic/angular';
 export class HomePage {
   // credits and about
   author: string = "Daniel David";
-  version: string = "2.0.0";  
+  version: string = "1.0.0";  
 
 
   result: string = "";
