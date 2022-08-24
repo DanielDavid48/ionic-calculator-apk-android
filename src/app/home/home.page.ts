@@ -36,7 +36,7 @@ import { ToastController } from '@ionic/angular';
 export class HomePage {
   // credits and about
   author: string = "Daniel David";
-  version: string = "1.0.0";  
+  version: string = "2.0.0";  
 
 
   result: string = "";
@@ -45,6 +45,7 @@ export class HomePage {
   ope: string = "";
   num1: string = "";
   num2: string = "";
+  control:boolean = false;
 
   constructor(public toastController: ToastController) {}
 
@@ -68,12 +69,19 @@ export class HomePage {
   }
 
   public addNumero(numero: string){
+    if(this.control){
+      this.ope = "";
+      this.ope += numero;
+      this.control = false;
+      this.num1 = "";
+      this.num2 = "";
+    } else {this.ope += numero;}
     if(this.operator == ""){
       this.num1 += numero;
     } else {
       this.num2 += numero;
     }
-    this.ope += numero;
+    
   }
   
   public operacao(tipo: string){
@@ -92,7 +100,7 @@ export class HomePage {
         this.ope = this.ope.substring(0, this.ope.lastIndexOf(this.operator))
         this.ope += tipo;
       }
-      this.operator = tipo; 
+      if(this.num1.length > 0){this.operator = tipo; }
     }
   }
 
@@ -105,7 +113,7 @@ export class HomePage {
     this.operator = this.novo_operador;
     this.ope += this.operator;
     this.novo_operador = "";
-  
+    alert('num1: ' + num1 + "\n num2: " + num2 + "\n operator?: " + this.operator)
     switch(operador){
       case "+":
         result = num1 + num2;
@@ -150,7 +158,8 @@ export class HomePage {
           this.ope = this.result;
         }
       }
-      this.result = ""
+      this.result = "";
+      this.control = true;
     }
   }
 
