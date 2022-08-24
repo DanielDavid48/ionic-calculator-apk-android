@@ -113,7 +113,6 @@ export class HomePage {
     this.operator = this.novo_operador;
     this.ope += this.operator;
     this.novo_operador = "";
-    alert('num1: ' + num1 + "\n num2: " + num2 + "\n operator?: " + this.operator)
     switch(operador){
       case "+":
         result = num1 + num2;
